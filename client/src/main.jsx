@@ -1,4 +1,6 @@
-import { StrictMode } from 'react'
+// client/src/main.jsx
+
+import React, { StrictMode } from 'react' // 👈 Importar React aquí
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
