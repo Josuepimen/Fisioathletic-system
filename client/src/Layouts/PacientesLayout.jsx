@@ -1,31 +1,43 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
-export default function PacienteLayout() {
+export default function PacientesLayout() {
   return (
-    <div className="min-h-screen flex bg-neutral text-font">
-      {/* SIDEBAR */}
+    <div className="min-h-screen flex bg-neutral text-font)] font-sans">
+      {/* Sidebar del módulo */}
       <aside className="w-64 bg-main text-white flex flex-col p-6 space-y-6">
         <div>
-          <h2 className="text-2xl font-bold">Mi Espacio</h2>
-          <p className="text-sm text-minor">Portal del Paciente</p>
+          <h2 className="text-2xl font-bold">HCE Fisioterapia</h2>
+          <p className="text-sm text-minor">FisioAthletic Center</p>
         </div>
 
-        <nav className="flex flex-col gap-4">
-          <NavLink to="/paciente" className="hover:text-minor transition-all">🏠 Inicio</NavLink>
-          <NavLink to="/paciente/perfil" className="hover:text-minor">👤 Perfil</NavLink>
-          <NavLink to="/paciente/sesiones" className="hover:text-minor">📅 Mis Sesiones</NavLink>
-          <NavLink to="/paciente/ejercicios" className="hover:text-minor">💪 Ejercicios</NavLink>
-          <NavLink to="/paciente/historial" className="hover:text-minor">📈 Evolución</NavLink>
+        <nav className="flex flex-col gap-3 text-lg">
+          <NavLink
+            to="/pacientes"
+            className={({ isActive }) =>
+              `hover:text-minor ${isActive ? "font-semibold underline" : ""}`
+            }
+          >
+            🧍 Lista de Pacientes
+          </NavLink>
+          <NavLink to="/pacientes/nuevo" className="hover:text-minor">
+            ➕ Registrar Paciente
+          </NavLink>
+          <NavLink to="/pacientes/historial" className="hover:text-minor">
+            📋 Historia Clínica
+          </NavLink>
+          <NavLink to="/pacientes/reporte" className="hover:text-minor">
+            📄 Reportes Médicos
+          </NavLink>
         </nav>
 
-        <button className="mt-auto bg-accent hover:bg-minor text-white py-2 rounded-xl transition-all">
-          Cerrar sesión
-        </button>
+        <div className="mt-auto text-sm text-minor">
+          <p>Versión 1.0 — Módulo HCE</p>
+        </div>
       </aside>
 
-      {/* CONTENIDO */}
-      <main className="flex-1 p-10">
+      {/* Zona dinámica de contenido */}
+      <main className="flex-1 p-10 overflow-y-auto">
         <Outlet />
       </main>
     </div>
