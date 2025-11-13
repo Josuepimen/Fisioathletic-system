@@ -1,9 +1,16 @@
-import React from 'react'
+// src/routes/LoginRoutes.jsx
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import AuthLayout from "../layouts/AuthLayout";
+import LoginPage from "../Pages/login/LoginPage";
 
-function LoginRoutes() {
+export default function LoginRoutes() {
   return (
-    <div>LoginRoutes</div>
-  )
+    <Routes>
+      <Route element={<AuthLayout />}>
+        {/* /login */}
+        <Route index element={<LoginPage />} />
+      </Route>
+    </Routes>
+  );
 }
-
-export default LoginRoutes
