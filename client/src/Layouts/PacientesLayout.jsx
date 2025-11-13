@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { FaClipboardList } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa6";
 
 export default function PacientesLayout() {
   return (
@@ -15,16 +17,16 @@ export default function PacientesLayout() {
           <NavLink
             to="/pacientes"
             className={({ isActive }) =>
-              `hover:text-minor ${isActive ? "font-semibold underline" : ""}`
+              `hover:text-minor flex items-center gap-1  ${isActive ? "font-semibold underline" : ""}`
             }
           >
-            🧍 Lista de Pacientes
+            <FaUserPlus/> Lista de Pacientes
           </NavLink>
           <NavLink to="/pacientes/nuevo" className="hover:text-minor">
             ➕ Registrar Paciente
           </NavLink>
-          <NavLink to="/pacientes/historial" className="hover:text-minor">
-            📋 Historia Clínica
+          <NavLink to="/pacientes/historial" className="hover:text-minor flex items-center gap-2 text-xl">
+            <FaClipboardList />  Historia Clínica
           </NavLink>
           <NavLink to="/pacientes/reporte" className="hover:text-minor">
             📄 Reportes Médicos
