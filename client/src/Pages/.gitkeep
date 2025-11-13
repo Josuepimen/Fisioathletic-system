@@ -1,0 +1,17 @@
+Donde estaran las paginas del proyecto tienen esta estructura 
+Vistas principales
+
+├── pages/                  
+│       │   ├── login/
+│       │   │   └── LoginPage.jsx
+│       │   ├── dashboard/
+│       │   │   └── DashboardHome.jsx
+│       │   ├── sesiones/
+│       │   │   ├── SesionesPage.jsx
+│       │   │   └── IntervencionPage.jsx
+│       │   └── pacientes/
+│       │       ├── PacientesList.jsx
+│       │       ├── PacienteForm.jsx
+│       │       ├── PacienteHistorial.jsx
+│       │       └── PacienteReporte.jsx
+│       │

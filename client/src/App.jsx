@@ -1,10 +1,7 @@
-// client/src/App.jsx
-
 import React from 'react'; // 👈 ¡Agregar esta línea!
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)

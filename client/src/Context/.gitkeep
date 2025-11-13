@@ -1,0 +1,1 @@
+Solo el módulo “pacientes-ui” tendrá un Context API, porque es el único que requiere un estado global compartido (historia clínica, evolución, datos activos del paciente).
