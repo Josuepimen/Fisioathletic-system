@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Routes>
       {/* Redirección por defecto */}
-      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/" element={<Navigate to="/pacientes/" replace />} />
 
       {/* Módulos principales */}
       <Route path="/login/*" element={<LoginRoutes />} />
