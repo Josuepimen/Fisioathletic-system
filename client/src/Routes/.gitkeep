@@ -1,1 +1,8 @@
 # Configuración de React Router
+
+src/
+└── routes/
+    ├── LoginRoutes.jsx         # Rutas del módulo de autenticación
+    ├── DashboardRoutes.jsx     # Rutas del panel principal (fisioterapeuta)
+    ├── SesionesRoutes.jsx      # Rutas de gestión de sesiones y agenda
+    └── PacientesRoutes.jsx     # Rutas del módulo de pacientes (HCE)
