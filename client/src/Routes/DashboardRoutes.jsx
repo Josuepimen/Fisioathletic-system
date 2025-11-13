@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import DashboardLayout from "../layouts/DashboardLayout";
+import DashboardHome from "../pages/dashboard/DashboardHome";
 
-function DashboardRoutes() {
+export default function DashboardRoutes() {
   return (
-    <div>DashboardRoutes</div>
-  )
+    <Routes>
+      <Route element={<DashboardLayout />}>
+        <Route index element={<DashboardHome />} />
+      </Route>
+    </Routes>
+  );
 }
-
-export default DashboardRoutes
