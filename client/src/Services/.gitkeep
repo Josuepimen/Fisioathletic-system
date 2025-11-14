@@ -1,0 +1,5 @@
+Funciones para consumir API (axios, fetch)
+
+├── services/              
+│       │   ├── pacientesService.js
+│       │   └── authService.js
