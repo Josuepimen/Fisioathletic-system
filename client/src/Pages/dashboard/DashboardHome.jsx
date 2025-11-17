@@ -1,111 +1,182 @@
-// client/src/pages/Dashboard.jsx
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
+import {
+  Activity,
+  Users,
+  Calendar,
+  FileCheck,
+} from "lucide-react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
+import { motion } from "framer-motion";
+import SplashScreen from "../../Components/SplashScreen"; // 👈 Import del splash screen
 
-import React from 'react';
-
-// Colores definidos para la aplicación (para uso en clases Tailwind)
+// 🎨 Colores personalizados
 const COLORS = {
-  textDark: '#496C5B',
-  fondoApp: '#F3EFE9',
-  principalClaro: '#AEC4B2',
-  principalRosa: '#E5C3B3',
+  text: "#37433D",
+  card1: "#E5C3B3",
+  card2: "#AEC4B2",
+  card3: "#F6D6A9",
+  card4: "#F3B3A3",
 };
 
-// Componente reusable para mostrar los indicadores (Cards)
-const MetricCard = ({ title, value, icon, accentColor }) => (
-  // Diseño de tarjeta con borde superior para acento visual
-  <div className={`bg-white p-5 rounded-xl shadow-lg border-t-4 border-[${accentColor}] 
-                   hover:shadow-xl transition duration-300`}>
-    <div className="flex items-center justify-between">
-      <p className={`text-sm font-semibold uppercase text-[${COLORS.textDark}]/70`}>{title}</p>
-      {/* Icono de ejemplo */}
-      <div className={`text-xl text-[${COLORS.textDark}]`}>{icon}</div> 
+// 📊 Datos del gráfico
+const sampleData = [
+  { month: "Jan", sessions: 400 },
+  { month: "Feb", sessions: 600 },
+  { month: "Mar", sessions: 800 },
+  { month: "Apr", sessions: 750 },
+  { month: "May", sessions: 1000 },
+  { month: "Jun", sessions: 900 },
+  { month: "Jul", sessions: 1200 },
+];
+
+// 💎 Componente de tarjeta métrica
+const MetricCard = ({ title, value, icon: Icon, color }) => (
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.98 }}
+    className="flex flex-col justify-between bg-white rounded-xl p-5 shadow-md transition"
+    style={{ borderTop: `4px solid ${color}` }}
+  >
+    <div className="flex items-center justify-between mb-2">
+      <p className="text-sm font-semibold uppercase text-gray-600">{title}</p>
+      <Icon size={20} className="text-gray-500" />
     </div>
-    <p className={`text-4xl font-extrabold mt-2 text-[${COLORS.textDark}]`}>{value}</p>
-  </div>
+    <p className="text-3xl font-extrabold text-font">{value}</p>
+  </motion.div>
 );
 
-// Componente principal del Dashboard
-const DashboardHome = () => {
+// 🌟 Componente principal del Dashboard
+export default function DashboardHome() {
+  const [loading, setLoading] = useState(true);
+
+  // Muestra el SplashScreen mientras carga
+  if (loading) {
+    return <SplashScreen onFinish={() => setLoading(false)} />;
+  }
+
   return (
-    // Contenedor principal con el color de fondo neutro
-    <div className={`min-h-screen p-4 md:p-8 bg-[${COLORS.fondoApp}] text-[${COLORS.textDark}]`}>
-      
-      {/* Encabezado y Título Principal (Visible en Desktop y Mobile) */}
-      <h1 className="text-3xl font-extrabold mb-6 border-b-2 border-[${COLORS.principalRosa}] pb-2">
-        Panel de Monitoreo General
-      </h1>
-
-      {/* 1. SECCIÓN DE INDICADORES CLAVE (Responsive: 1 columna en móvil, 4 en desktop) */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        
-        <MetricCard 
-          title="Pacientes Activos" 
-          value="125" 
-          icon="👥" // Icono simbólico
-          accentColor={COLORS.principalClaro} 
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="space-y-10"
+    >
+      {/* Tarjetas de métricas */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <MetricCard
+          title="Total Patients"
+          value="154"
+          icon={Users}
+          color={COLORS.card2}
         />
-        
-        <MetricCard 
-          title="Sesiones Agendadas Hoy" 
-          value="18" 
-          icon="🗓️"
-          accentColor={COLORS.principalRosa} 
+        <MetricCard
+          title="Active Sessions"
+          value="3195"
+          icon={Activity}
+          color={COLORS.card1}
         />
-        
-        <MetricCard 
-          title="Promedio Recuperación" 
-          value="45 días" 
-          icon="⏳"
-          accentColor={COLORS.principalClaro} 
+        <MetricCard
+          title="Completed Treatments"
+          value="804"
+          icon={FileCheck}
+          color={COLORS.card3}
         />
-        
-        <MetricCard 
-          title="Próxima Cita Importante" 
-          value="Paciente J - 11:30 AM" 
-          icon="🚨"
-          accentColor={COLORS.principalRosa} 
+        <MetricCard
+          title="Avg. Session Duration"
+          value="2434"
+          icon={Calendar}
+          color={COLORS.card4}
         />
-      </section>
-
-      {/* 2. SECCIÓN DE GRÁFICOS Y REPORTES (Responsive: 1 columna en móvil, 3 en desktop) */}
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        {/* GRÁFICO PRINCIPAL DE EVOLUCIÓN (Ocupa 2/3 del ancho en desktop) */}
-        <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg">
-          <h2 className="text-xl font-bold mb-4">Evolución de Sesiones (Últimos 6 meses)</h2>
-          <div className="h-64 flex items-center justify-center bg-[${COLORS.fondoApp}] rounded-lg text-gray-500">
-            [Gráfico de Tendencias - Librería Recharts / Chart.js]
-          </div>
-        </div>
-
-        {/* LISTA DE TAREAS/CITAS PENDIENTES */}
-        <div className="bg-white p-6 rounded-xl shadow-lg">
-          <h2 className="text-xl font-bold mb-4">Citas y Tareas Recientes</h2>
-          <ul className="space-y-3">
-            <li className={`p-3 rounded-lg bg-[${COLORS.principalRosa}]/20 border-l-4 border-[${COLORS.principalRosa}] text-sm`}>
-              Paciente A - **10:00 AM**
-            </li>
-            <li className={`p-3 rounded-lg bg-[${COLORS.principalRosa}]/20 border-l-4 border-[${COLORS.principalRosa}] text-sm`}>
-              Revisar expediente de Paciente Z
-            </li>
-            <li className={`p-3 rounded-lg bg-[${COLORS.principalRosa}]/20 border-l-4 border-[${COLORS.principalRosa}] text-sm`}>
-              Paciente C - **02:00 PM**
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* 3. Botón de Generación de Informes (Requisito clave del proyecto) */}
-      <div className="mt-8 flex justify-end">
-        <button 
-          className={`bg-[${COLORS.principalClaro}] hover:bg-[#496C5B] text-white font-bold py-3 px-6 rounded-lg 
-                      shadow-lg transition duration-300 uppercase tracking-wider`}
-        >
-          Generar Reporte General
-        </button>
       </div>
-    </div>
-  );
-};
 
-export default DashboardHome;
+      {/* Gráfico + Próximas citas */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* 📈 Gráfico interactivo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="lg:col-span-2 bg-white p-6 rounded-xl shadow-md"
+        >
+          <h2 className="text-xl font-bold mb-4 text-font">
+            Evolution of Sessions
+          </h2>
+          <div className="h-64 rounded-lg bg-[#F3EFE9] p-2">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={sampleData}
+                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
+                <XAxis dataKey="month" stroke="#888" />
+                <YAxis />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "white",
+                    borderRadius: "8px",
+                    border: "1px solid #ddd",
+                  }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="sessions"
+                  stroke={COLORS.card2}
+                  strokeWidth={3}
+                  activeDot={{ r: 8 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </motion.div>
+
+        {/* 📅 Citas próximas */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="bg-white p-6 rounded-xl shadow-md flex flex-col"
+        >
+          <h2 className="text-xl font-bold mb-4 text-font">
+            Upcoming Appointments
+          </h2>
+          <ul className="flex-1 space-y-3 text-sm">
+            {[
+              { name: "Marn Sarin", time: "1:00 PM" },
+              { name: "Saun Sarin", time: "1:20 PM" },
+              { name: "Slarin", time: "1:30 PM" },
+              { name: "Hadclay", time: "2:30 PM" },
+            ].map((apt, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="p-3 rounded-lg border-l-4 border-[#E5C3B3] bg-[#E5C3B3]/20 hover:bg-[#E5C3B3]/30 transition cursor-pointer"
+              >
+                <span className="font-semibold">{apt.name}</span> –{" "}
+                <span className="text-gray-600">{apt.time}</span>
+              </motion.li>
+            ))}
+          </ul>
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="mt-6 bg-main hover:bg-accent text-white py-3 px-6 rounded-lg font-semibold transition"
+          >
+            Generate Report
+          </motion.button>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
