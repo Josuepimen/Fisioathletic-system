@@ -1,46 +1,75 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { FaClipboardList } from "react-icons/fa";
-import { FaUserPlus } from "react-icons/fa6";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  Users,
+  Plus,
+  FileText,
+  BarChart3
+} from "lucide-react";
 
 export default function PacientesLayout() {
-  return (
-    <div className="min-h-screen flex bg-neutral text-font)] font-sans">
-      {/* Sidebar del módulo */}
-      <aside className="w-64 bg-main text-white flex flex-col p-6 space-y-6">
-        <div>
-          <h2 className="text-2xl font-bold">HCE Fisioterapia</h2>
-          <p className="text-sm text-minor">FisioAthletic Center</p>
-        </div>
+  const { pathname } = useLocation();
 
-        <nav className="flex flex-col gap-3 text-lg">
-          <NavLink
-            to="/pacientes"
-            className={({ isActive }) =>
-              `hover:text-minor flex items-center gap-1  ${isActive ? "font-semibold underline" : ""}`
-            }
-          >
-            <FaUserPlus/> Lista de Pacientes
-          </NavLink>
-          <NavLink to="/pacientes/nuevo" className="hover:text-minor">
-            ➕ Registrar Paciente
-          </NavLink>
-          <NavLink to="/pacientes/historial" className="hover:text-minor flex items-center gap-2 text-xl">
-            <FaClipboardList />  Historia Clínica
-          </NavLink>
-          <NavLink to="/pacientes/reporte" className="hover:text-minor">
-            📄 Reportes Médicos
-          </NavLink>
+  const menu = [
+    { to: "/pacientes", label: "Lista de Pacientes", icon: Users },
+    { to: "/pacientes/nuevo", label: "Registrar Paciente", icon: Plus },
+    { to: "/pacientes/historial", label: "Historial Clínica", icon: FileText },
+    { to: "/pacientes/reportes", label: "Reportes Médicos", icon: BarChart3 },
+  ];
+
+  return (
+    <div className="min-h-screen flex">
+
+      {/* SIDEBAR estilo dashboard */}
+      <aside className="w-72 bg-main flex flex-col p-8 text-white">
+        
+        {/* Titulo */}
+        <h2 className="text-3xl font-bold mb-10">HCE</h2>
+        
+        <nav className="flex flex-col gap-4">
+          {menu.map(({ to, label, icon: Icon }) => {
+            const active = pathname === to;
+
+            return (
+              <Link
+                key={to}
+                to={to}
+                className={`
+                  flex items-center gap-3 px-4 py-3 rounded-xl text-white transition-all 
+                  ${active 
+                    ? "bg-white/20 text-white font-semibold shadow-sm" 
+                    : "hover:bg-white/10 text-white/80"}
+                `}
+              >
+                <Icon
+                  size={20}
+                  className={`${
+                    active ? "text-white" : "text-white/80"
+                  }`}
+                />
+                {label}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="mt-auto text-sm text-minor">
-          <p>Versión 1.0 — Módulo HCE</p>
+        {/* Footer */}
+        <div className="mt-auto text-sm text-white/60">
+          Módulo HCE
         </div>
       </aside>
 
-      {/* Zona dinámica de contenido */}
-      <main className="flex-1 p-10 overflow-y-auto">
-        <Outlet />
+      {/* CONTENIDO */}
+      <main className="flex-1 bg-neutral p-14">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.50 }}
+          className="max-w-6xl mx-auto"
+        >
+          <Outlet />
+        </motion.div>
       </main>
     </div>
   );
