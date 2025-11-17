@@ -15,9 +15,9 @@ function DashboardLayout() {
     <div className="min-h-screen flex bg-[#F3EFE9] text-font">
       {/* Sidebar */}
       <aside className="w-64 bg-main text-white flex flex-col p-6 space-y-8 shadow-lg">
-        <h2 className="text-2xl font-bold tracking-wide mb-4">Dashboard</h2>
+        <h2 className="text-2xl font-bold tracking-wide mb-4">FisioAthletic Center</h2>
 
-        <nav className="flex flex-col gap-3">
+        <nav className="flex flex-col gap-3 flex-1">
           {menuItems.map((item) => (
             <NavLink
               key={item.to}
@@ -35,11 +35,21 @@ function DashboardLayout() {
             </NavLink>
           ))}
         </nav>
+
+        {/* 🔻 Footer en el sidebar */}
+        <footer className="text-xs text-white/80 mt-6 border-t border-white/20 pt-4">
+          © 2025 FisioAthletic Center  
+        </footer>
       </aside>
 
-      {/* Contenido */}
+      {/* Contenido principal */}
       <main className="flex-1 p-8 overflow-y-auto">
         <Outlet />
+
+        {/* 🔻 Footer del contenido */}
+        <div className="mt-10 text-center text-xs text-font/60">
+          © 2025 FisioAthletic Center — Plataforma Digital de Fisioterapia.
+        </div>
       </main>
     </div>
   );

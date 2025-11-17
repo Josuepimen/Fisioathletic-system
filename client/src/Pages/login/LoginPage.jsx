@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -62,7 +63,7 @@ export default function PaginaLogin() {
           <motion.input
             type="email"
             placeholder="Correo electrónico"
-            className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8CA59A]"
+            className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-main"
             required
             whileFocus={{ scale: 1.02 }}
           />
@@ -70,7 +71,7 @@ export default function PaginaLogin() {
           <motion.input
             type="password"
             placeholder="Contraseña"
-            className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8CA59A]"
+            className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-main"
             required
             whileFocus={{ scale: 1.02 }}
           />
@@ -79,7 +80,7 @@ export default function PaginaLogin() {
             type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full bg-[#8CA59A] text-white font-medium py-3 rounded-md hover:bg-[#7b958a] transition"
+            className="w-full bg-main text-white font-medium py-3 rounded-md hover:bg-[#7b958a] transition"
           >
             Iniciar sesión
           </motion.button>
@@ -91,7 +92,7 @@ export default function PaginaLogin() {
         initial={{ x: 80, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 60, delay: 0.4 }}
-        className="w-1/2 bg-[#8CA59A] relative"
+        className="w-1/2 bg-main relative"
       >
         <motion.img
           src={LogoLogin}
@@ -101,7 +102,7 @@ export default function PaginaLogin() {
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
-        <div className="absolute inset-0 bg-[#8CA59A]/20"></div>
+        <div className="absolute inset-0 bg-main/20"></div>
       </motion.div>
     </motion.div>
   );
