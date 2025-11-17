@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import {
   Activity,
@@ -49,7 +50,7 @@ const MetricCard = ({ title, value, icon: Icon, color }) => (
       <p className="text-sm font-semibold uppercase text-gray-600">{title}</p>
       <Icon size={20} className="text-gray-500" />
     </div>
-    <p className="text-3xl font-extrabold text-[#37433D]">{value}</p>
+    <p className="text-3xl font-extrabold text-font">{value}</p>
   </motion.div>
 );
 
@@ -106,7 +107,7 @@ export default function DashboardHome() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="lg:col-span-2 bg-white p-6 rounded-xl shadow-md"
         >
-          <h2 className="text-xl font-bold mb-4 text-[#37433D]">
+          <h2 className="text-xl font-bold mb-4 text-font">
             Evolution of Sessions
           </h2>
           <div className="h-64 rounded-lg bg-[#F3EFE9] p-2">
@@ -144,7 +145,7 @@ export default function DashboardHome() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="bg-white p-6 rounded-xl shadow-md flex flex-col"
         >
-          <h2 className="text-xl font-bold mb-4 text-[#37433D]">
+          <h2 className="text-xl font-bold mb-4 text-font">
             Upcoming Appointments
           </h2>
           <ul className="flex-1 space-y-3 text-sm">
@@ -170,7 +171,7 @@ export default function DashboardHome() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="mt-6 bg-[#8CA59A] hover:bg-[#5C7A6A] text-white py-3 px-6 rounded-lg font-semibold transition"
+            className="mt-6 bg-main hover:bg-accent text-white py-3 px-6 rounded-lg font-semibold transition"
           >
             Generate Report
           </motion.button>
