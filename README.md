@@ -1,46 +1,52 @@
-FisioAthletic System
+🏋️‍♂️ FisioAthletic System
 
-Proyecto en desarrollo para la gestión y seguimiento de registros clínicos en fisioterapia.
+Sistema web en desarrollo para la gestión y seguimiento de registros clínicos de fisioterapia, con enfoque en eficiencia, accesibilidad y experiencia del usuario.
 
-Instalación:
+📌 Instalación
 
-Este proyecto utiliza Node.js, por lo tanto es necesario tenerlo instalado.
+Este proyecto requiere Node.js instalado en el equipo.
 
-Accede a la carpeta del cliente:
+1️⃣ Dirígete a la carpeta del cliente
+
 cd client
 
-Instala las dependencias principales:
+
+2️⃣ Instala las dependencias principales
+
 npm install
 
-Instala las siguientes dependencias adicionales:
+
+3️⃣ Instala las dependencias adicionales necesarias
+
 npm install react-router-dom
 npm install motion
 npm install recharts
 npm install lucide-react
 
-Ejecución en desarrollo:
+▶️ Ejecución del proyecto
 
-Para ejecutar el proyecto de forma local:
+Ejecuta el entorno de desarrollo local con:
+
 npm run dev
 
-Tecnologías utilizadas:
 
-React
+Luego accede en el navegador al puerto indicado por la terminal (ejemplo):
 
-Node.js
+http://localhost:5173
 
-Vite
+🛠️ Tecnologías utilizadas
+Categoría	Herramientas
+Frontend	React + Vite + Tailwind CSS
+Rutas	React Router DOM
+Animaciones	Motion (Framer Motion)
+Gráficos	Recharts
+Iconografía	Lucide React
+Backend (próximo)	Node.js + Express
+Base de datos (próximo)	MongoDB
+🚧 Estado del proyecto
 
-Tailwind CSS
+El sistema se encuentra en fase de desarrollo, integrando nuevas funcionalidades de manera progresiva.
 
-React Router DOM
+👥 Créditos
 
-Motion (Framer Motion)
-
-Recharts
-
-Lucide React
-
-Estado del proyecto:
-
-En desarrollo. Nuevas funcionalidades se integrarán progresivamente.
+Proyecto desarrollado como solución tecnológica para el Fisio Athletic Center.
